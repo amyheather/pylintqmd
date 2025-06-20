@@ -70,6 +70,23 @@ KEEP_TEMP_FILES=1 bash pylintqmd.sh file.qmd
 
 <br>
 
+## Updating the package
+
+To upload to **PyPI**:
+
+```
+flit publish
+```
+
+To upload to **test PyPI**, build the package locally and push with twine, entering the API token when prompted:
+
+```
+flit build
+twine upload --repository testpypi dist/*
+```
+
+<br>
+
 ## Acknowledgements
 
 Parts of this package were generated or adapted from code provided by [Perplexity](https://www.perplexity.ai/).

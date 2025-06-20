@@ -5,9 +5,13 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "pylintqmd"
 authors = [{name = "Amy Heather"}]
+readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 test = ["pytest"]
+
+[project.urls]
+Home = "https://github.com/amyheather/pylintqmd"

@@ -1,3 +1,4 @@
 flit
 pytest
+twine
 -e .
