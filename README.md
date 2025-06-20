@@ -29,28 +29,6 @@ pip install -e .
 
 <br>
 
-## Dependencies
-
-This package uses Flit for packaging and pytest for testing.
-
-A `requirements.txt` file in this repository is provided for development purposes and contains:
-
-```
-flit
-pylint
-pytest
-twine
--e .
-```
-
-To install development dependencies, run:
-
-```
-pip install -r requirements.txt
-```
-
-<br>
-
 ## Usage
 
 To lint current directory and sub-directories:
@@ -78,7 +56,31 @@ pylintqmd . -k
 
 <br>
 
+## Dependencies
+
+This package uses Flit for packaging and pytest for testing.
+
+A `requirements.txt` file in this repository is provided for development purposes and contains:
+
+```
+flit
+pylint
+pytest
+twine
+-e .
+```
+
+To install development dependencies, run:
+
+```
+pip install -r requirements.txt
+```
+
+<br>
+
 ## Updating the package
+
+Make sure to **update the version** number.
 
 To upload to **PyPI**:
 
@@ -86,9 +88,10 @@ To upload to **PyPI**:
 flit publish
 ```
 
-To upload to **test PyPI**, build the package locally and push with twine, entering the API token when prompted:
+To upload to **test PyPI**, remove any existing builds, then build the package locally and push with twine, entering the API token when prompted:
 
 ```
+rm -rf dist/
 flit build
 twine upload --repository testpypi dist/*
 ```
