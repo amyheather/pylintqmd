@@ -4,6 +4,7 @@
 
 ![Code licence](https://img.shields.io/badge/🛡️_Code_licence-MIT-8a00c2?style=for-the-badge&labelColor=gray)
 [![ORCID](https://img.shields.io/badge/ORCID_Amy_Heather-0000--0002--6596--3479-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-6596-3479)
+[![PyPI](https://img.shields.io/pypi/v/pylintqmd?style=for-the-badge&labelColor=gray)](https://pypi.org/project/pylintqmd/)
 
 </div>
 
@@ -82,19 +83,31 @@ pip install -r requirements.txt
 
 Make sure to **update the version** number.
 
-To upload to **PyPI**:
+To upload to **PyPI** using `flit`:
 
 ```
 flit publish
 ```
 
-To upload to **test PyPI**, remove any existing builds, then build the package locally and push with twine, entering the API token when prompted:
+To upload to **PyPI** or **test PyPI** using `twine`: remove any existing builds, then build the package locally and push with twine, entering the API token when prompted:
+
+```
+rm -rf dist/
+flit build
+twine upload --repository pypi dist/*
+```
 
 ```
 rm -rf dist/
 flit build
 twine upload --repository testpypi dist/*
 ```
+
+<br>
+
+## Citation
+
+Please refer to `CITATION.cff`.
 
 <br>
 
