@@ -37,7 +37,9 @@ A `requirements.txt` file in this repository is provided for development purpose
 
 ```
 flit
+pylint
 pytest
+twine
 -e .
 ```
 
@@ -51,21 +53,27 @@ pip install -r requirements.txt
 
 ## Usage
 
+To lint current directory and sub-directories:
+
+```
+pylintqmd .
+```
+
 To lint file:
 
 ```
-bash pylintqmd.sh file.qmd
+pylintqmd file.qmd
 ```
 
 To lint all .qmd files in directory
 
 ```
-bash pylintqmd.sh folder
+pylintqmd folder
 ```
 
 To keep temporary .py files for debugging when lint:
 ```
-KEEP_TEMP_FILES=1 bash pylintqmd.sh file.qmd
+pylintqmd . -k
 ```
 
 <br>
