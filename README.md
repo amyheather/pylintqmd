@@ -13,6 +13,42 @@ Package for running pylint on .qmd files.
 
 <br>
 
+## Installation
+
+You can install `pylintqmd` from PyPI:
+
+```
+pip install pylintqmd
+```
+
+Or, for local development:
+
+```
+pip install -e .
+```
+
+<br>
+
+## Dependencies
+
+This package uses Flit for packaging and pytest for testing.
+
+A `requirements.txt` file in this repository is provided for development purposes and contains:
+
+```
+flit
+pytest
+-e .
+```
+
+To install development dependencies, run:
+
+```
+pip install -r requirements.txt
+```
+
+<br>
+
 ## Usage
 
 To lint file:
