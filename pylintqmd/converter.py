@@ -1,0 +1,147 @@
+"""
+Convert .qmd file to python file.
+
+Acknowledgements
+----------------
+Code generated and adapted from Perplexity.Ai.
+"""
+
+import argparse
+from pathlib import Path
+import re
+import sys
+
+
+def convert_qmd_to_py(qmd_path, output_path=None, verbose=False):
+    """
+    Convert QMD file to Python file with line alignment.
+
+    Parameters
+    ----------
+    qmd_path : str or Path
+        Path to the input .qmd file.
+    output_path : str or Path
+        Path for the output .py file. If None, uses qmd_path with .py suffix.
+    verbose : bool
+        If True, print detailed progress information.
+
+    Examples
+    --------
+    >>> # From python script
+    >>> convert_qmd_to_py("input.qmd", "output.py", True)
+    >>> # From terminal
+    >>> python converter.py input.qmd [output.py] [-v]
+
+    Notes
+    -----
+    Adapted from Perplexity.AI-generated code.
+    """
+    # Convert input path to a Path object
+    qmd_path = Path(qmd_path)
+
+    # Determine output path. If provided, convert to a Path object. If not,
+    # the file extension of the input file to `.py`
+    if output_path is None:
+        output_path = qmd_path.with_suffix('.py')
+    else:
+        output_path = Path(output_path)
+
+    if verbose:
+        print(f"Converting {qmd_path} to {output_path}")
+
+    try:
+        # Open and read the QMD file, storing all lines in qmd_lines
+        with open(qmd_path, 'r', encoding='utf-8') as f:
+            qmd_lines = f.readlines()
+
+        # Initialise processing state - py_lines to store output lines, and
+        # flags to track the current section type
+        py_lines = []
+        in_python_block = False
+
+        # Iterate over each line in the QMD file
+        for _, line in enumerate(qmd_lines, 1):
+
+            # Remove the trailing new line
+            original_line = line.rstrip('\n')
+
+            # Check if the current line is a code boundary (python, R, or end)
+            python_block_start = re.match(r'^```\{python\}', original_line)
+            code_block_end = original_line.strip() == '```'
+
+            # Update flags (if entering code block, then True) (if leaving code
+            # block, then False).
+            if python_block_start:
+                in_python_block = True
+            elif code_block_end:
+                in_python_block = False
+
+            # Update lines based on current context
+            if python_block_start:
+                py_lines.append("# %% [python]")
+            elif in_python_block:
+                py_lines.append(original_line)
+            else:
+                py_lines.append("# -")
+
+        # Write the output file
+        with open(output_path, "w", encoding="utf-8") as f:
+            for line in py_lines:
+                f.write(line + "\n")
+
+        if verbose:
+            print(f"✓ Successfully converted {qmd_path} to {output_path}")
+
+        # Check that line counts match
+        qmd_len = len(qmd_lines)
+        py_len = len(py_lines)
+        if qmd_len == py_len:
+            if verbose:
+                print(f"  Line count: {qmd_len} → {py_len} ")
+        else:
+            Warning(f"Line count mismatch: {qmd_len} → {py_len}")
+
+    # Error messages if issues finding/accessing files, or otherwise.
+    except FileNotFoundError:
+        print(f"Error: Input file '{qmd_path}' not found")
+    except PermissionError:
+        print(f"Error: Permission denied accessing '{qmd_path}' " +
+              f"or '{output_path}'")
+    except Exception as e:
+        print(f"Error during conversion: {e}")
+
+
+class CustomArgumentParser(argparse.ArgumentParser):
+    """
+    Print user-friendly error message and help text when incorrect
+    arguments are provided.
+    """
+    def error(self, message):
+        """
+        Initialise CustomArgumentParser instance.
+
+        Parameters
+        ----------
+        message : str
+            The error message to display.
+        """
+        print(f"\n❌ Error: {message}\n", file=sys.stderr)
+        self.print_help()
+        sys.exit(2)
+
+
+# To ensure it executes if run from terminal:
+if __name__ == "__main__":
+
+    # Set up argument parser with help statements
+    parser = CustomArgumentParser(
+        description="Convert .qmd file to python file.")
+    parser.add_argument("qmd_path", help="Path to the input .qmd file.")
+    parser.add_argument("output_path", nargs="?", default=None,
+                        help="(Optional) path to the output .py file.")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Print detailed progress information.")
+    args = parser.parse_args()
+
+    # Pass arguments to function and run it
+    convert_qmd_to_py(args.qmd_path, args.output_path, args.verbose)
