@@ -1,3 +1,11 @@
+⚠️ **This package is now deprecated. Please use [lintquarto](https://github.com/lintquarto/lintquarto) instead, which provides support for a wider range of linters.**
+
+<br>
+<br>
+<br>
+
+---
+
 <div align="center">
 
 # pylintqmd
@@ -12,10 +20,6 @@
 <br>
 
 Package for running [pylint](https://github.com/pylint-dev/pylint) on quarto `.qmd` files.
-
-<p align="center">
-  <img src="images/linting.png" alt="Linting illustration" width="400"/>
-</p>
 
 <br>
 
@@ -69,9 +73,9 @@ Curious about contributing? Check out the [contributing guidelines](CONTRIBUTING
 
 Please cite the repository on GitHub and/or Zenodo:
 
-> Heather, A. (2025). pylintqmd (v0.1.0).  https://github.com/amyheather/pylintqmd.
+> Heather, A. (2025). pylintqmd (v0.2.0).  https://github.com/amyheather/pylintqmd.
 >
-> Heather, A. (2025). pylintqmd (v0.1.0). https://doi.org/10.5281/zenodo.15727754.
+> Heather, A. (2025). pylintqmd (v0.2.0). https://doi.org/10.5281/zenodo.15727754.
 
 Citation instructions are also provided in `CITATION.cff`.
 
