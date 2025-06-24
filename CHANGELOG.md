@@ -11,7 +11,13 @@ Deprecating the package - please use [lintquarto](https://github.com/lintquarto/
 
 ## Added
 
-* Deprecation warning when import
+* Deprecation warning when import.
+* Code of conduct and contributing instructions.
+
+## Changed
+
+* Updates to README for clarity.
+* Moved package from `pylintqmd` to `src/pylintqmd`.
 
 ## v0.1.0 - 2025-06-20
 
