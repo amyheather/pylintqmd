@@ -5,32 +5,33 @@
 ![Code licence](https://img.shields.io/badge/🛡️_Code_licence-MIT-8a00c2?style=for-the-badge&labelColor=gray)
 [![ORCID](https://img.shields.io/badge/ORCID_Amy_Heather-0000--0002--6596--3479-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0002-6596-3479)
 [![PyPI](https://img.shields.io/pypi/v/pylintqmd?style=for-the-badge&labelColor=gray)](https://pypi.org/project/pylintqmd/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.15727754-486CAC?style=for-the-badge&logoColor=white)](https://doi.org/10.5281/zenodo.15727754)
 
 </div>
 
 <br>
 
-Package for running pylint on .qmd files.
+Package for running [pylint](https://github.com/pylint-dev/pylint) on quarto `.qmd` files.
+
+<p align="center">
+  <img src="images/linting.png" alt="Linting illustration" width="400"/>
+</p>
 
 <br>
 
 ## Installation
 
-You can install `pylintqmd` from PyPI:
+You can install `pylintqmd` from [PyPI](https://pypi.org/project/pylintqmd/):
 
 ```
 pip install pylintqmd
 ```
 
-Or, for local development:
-
-```
-pip install -e .
-```
+This package requires [pylint](https://github.com/pylint-dev/pylint) to function. When you install `pylintqmd` via pip, `pylint` will be installed automatically. You do not need to manually install any other dependencies.
 
 <br>
 
-## Usage
+## Getting started using `pylintqmd`
 
 To lint current directory and sub-directories:
 
@@ -53,61 +54,26 @@ pylintqmd folder
 To keep temporary .py files for debugging when lint:
 ```
 pylintqmd . -k
+pylintqmd . --keep-temp
 ```
 
 <br>
 
-## Dependencies
+## Community
 
-This package uses Flit for packaging and pytest for testing.
-
-A `requirements.txt` file in this repository is provided for development purposes and contains:
-
-```
-flit
-pylint
-pytest
-twine
--e .
-```
-
-To install development dependencies, run:
-
-```
-pip install -r requirements.txt
-```
+Curious about contributing? Check out the [contributing guidelines](CONTRIBUTING.md) to learn how you can help. Every bit of help counts, and your contribution - no matter how minor - is highly valued.
 
 <br>
 
-## Updating the package
+## How to cite `pylintqmd`
 
-Make sure to **update the version** number.
+Please cite the repository on GitHub and/or Zenodo:
 
-To upload to **PyPI** using `flit`:
+> Heather, A. (2025). pylintqmd (v0.1.0).  https://github.com/amyheather/pylintqmd.
+>
+> Heather, A. (2025). pylintqmd (v0.1.0). https://doi.org/10.5281/zenodo.15727754.
 
-```
-flit publish
-```
-
-To upload to **PyPI** or **test PyPI** using `twine`: remove any existing builds, then build the package locally and push with twine, entering the API token when prompted:
-
-```
-rm -rf dist/
-flit build
-twine upload --repository pypi dist/*
-```
-
-```
-rm -rf dist/
-flit build
-twine upload --repository testpypi dist/*
-```
-
-<br>
-
-## Citation
-
-Please refer to `CITATION.cff`.
+Citation instructions are also provided in `CITATION.cff`.
 
 <br>
 
